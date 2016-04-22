@@ -17,7 +17,7 @@ void getkeys()
     // The direction is the forward vector
     // The amount is 10 newtons
     // we add this to the force vector
-    force.add(PVector.mult(forward, 200));
+    force.add(PVector.mult(forward, 250));
     println(force);
   }      
   if (keys[DOWN])
@@ -25,17 +25,17 @@ void getkeys()
     // The direction is the forward vector
     // The amount is 10 newtons
     // we add this to the force vector
-    force.sub(PVector.mult(forward, 200));
+    force.sub(PVector.mult(forward, 250));
   }      
   if (keys[LEFT])
   {
     //      theta -= 0.1f;
-    force.sub(PVector.mult(right, 200));
+    force.sub(PVector.mult(right, 300));
   }
   if (keys[RIGHT])
   {
     //      theta += 0.1f;
-    force.add(PVector.mult(right, 200));
+    force.add(PVector.mult(right, 300));
   }
 
   if (keys[' '])

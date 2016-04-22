@@ -7,7 +7,7 @@ import ddf.minim.effects.*;
 Minim minim;
 //AudioPlayer snd, snd2, snd3;
 
-PImage imgShip, imgShot1;
+PImage imgShip, imgShot1, imgBossEnemy;
 
 int shipX = 25;
 int shipY = 250;
@@ -21,6 +21,7 @@ void setup()
   
   imgShip = loadImage("ship.png");
   imgShot1 = loadImage("shot1.png");
+  imgBossEnemy = loadImage("bossEnemy.png");
   
   
   int s = 0;//stars
@@ -58,6 +59,7 @@ float mass, timeDelta = 1.0f / 60.0f;
 
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 
+
 EnemyBoss enemyBoss;
 
 
@@ -89,7 +91,7 @@ void draw()
   velocity.add(PVector.mult(acceleration, timeDelta));
   pos.add(PVector.mult(velocity, timeDelta));
   force.x = force.y = 0;
-  velocity.mult(0.99f);
+  velocity.mult(0.97f);
 
   updateShip();
   enemyBoss.update();
@@ -100,7 +102,7 @@ void draw()
     Bullet b = bullets.get(i);
     b.update();
     b.render();
-    if (PVector.dist(b.pos, enemyBoss.pos) < enemyBoss.halfW)
+    if (PVector.dist(b.pos, enemyBoss.pos) < enemyBoss.halfW && enemyBoss.health >= 0)
     {
       enemyBoss.health --;
     }
@@ -114,6 +116,7 @@ void draw()
     println(pos);
     stroke(255);
     pushMatrix();
+    imageMode(CENTER);
     translate(pos.x, pos.y);
     image(imgShip, 5, 2);
     popMatrix();

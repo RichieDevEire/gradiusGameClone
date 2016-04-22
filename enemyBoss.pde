@@ -21,7 +21,7 @@ class EnemyBoss extends GameObject
       forward.y = - cos(theta);
       
       // Move in the direction we are rotated
-      pos.add(forward);
+      pos.add(right);
             
       if (pos.y - halfW < 0)
       {
@@ -50,20 +50,19 @@ class EnemyBoss extends GameObject
     stroke(255);
     pushMatrix(); // reset the translation and rotation
     translate(pos.x, pos.y);
-    
-    fill(0, 255, 0);
-    stroke(0, 255, 0);
-    rect(-halfW, -w, 50, 10);
+//    if (PVector.dist(b.pos, enemyBoss.pos) < enemyBoss.halfW)
+//    {
     fill(255, 0, 0);
     stroke(255, 0, 0);
+    rect(-halfW, -w, 50, 10);
+    fill(0, 255, 0);
+    stroke(0, 255, 0);
     rect(-halfW, -w, 50 * ((float)health / (float)maxHealth), 10);
-    
+//    }
     stroke(255);
-    rotate(theta); // We want rotate to happen first, so you make the call AFTER translate    
-    line(- halfW, halfW, 0, - halfW);
-    line(0, - halfW, halfW, halfW);
-    line(halfW, halfW, 0, 0);
-    line(- halfW, halfW, 0, 0);
+    rotate(theta); // We want rotate to happen first, so you make the call AFTER translate  
+    imageMode(CENTER);  
+    image(imgBossEnemy, 0, w);
     popMatrix();
   }   
 
