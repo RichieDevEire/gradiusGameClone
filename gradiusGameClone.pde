@@ -5,7 +5,7 @@ import ddf.minim.analysis.*;
 import ddf.minim.ugens.*;
 import ddf.minim.effects.*;
 Minim minim;
-//AudioPlayer snd, snd2, snd3;
+AudioPlayer snd;
 
 PImage imgShip, imgShot1, imgBossEnemy;
 
@@ -22,6 +22,9 @@ void setup()
   imgShip = loadImage("ship.png");
   imgShot1 = loadImage("shot1.png");
   imgBossEnemy = loadImage("bossEnemy.png");
+  
+  minim = new Minim(this);
+  snd = minim.loadFile("shot.wav");
   
   
   int s = 0;//stars

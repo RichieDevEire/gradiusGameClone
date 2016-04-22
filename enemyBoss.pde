@@ -21,7 +21,7 @@ class EnemyBoss extends GameObject
       forward.y = - cos(theta);
       
       // Move in the direction we are rotated
-      pos.add(right);
+      pos.add(forward);
             
       if (pos.y - halfW < 0)
       {

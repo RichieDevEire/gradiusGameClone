@@ -48,6 +48,9 @@ void getkeys()
     Bullet b = new Bullet(bulletPos.x, bulletPos.y);
     bullets.add(b);
     shotTime = 0.1f;
+    snd.setGain(-5.0);
+    snd.play();
+    snd.rewind();
   }
   }
 } 
