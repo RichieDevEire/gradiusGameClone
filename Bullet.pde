@@ -28,8 +28,8 @@ class Bullet extends GameObject
   {
     pushMatrix();
     translate(pos.x, pos.y);
-    rotate(theta);
-    line(-5, 0, 5, 0);
+    rotate(theta); 
+    image(imgShot1, 15, 5);
     popMatrix();
   }
 }

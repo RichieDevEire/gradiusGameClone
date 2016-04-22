@@ -1,3 +1,13 @@
+import ddf.minim.spi.*;
+import ddf.minim.signals.*;
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.ugens.*;
+import ddf.minim.effects.*;
+Minim minim;
+//AudioPlayer snd, snd2, snd3;
+
+PImage imgShip, imgShot1;
 
 int shipX = 25;
 int shipY = 250;
@@ -8,7 +18,12 @@ void setup()
 {
   lastTime = millis();
   size(1920, 500);
-  int s = 0;
+  
+  imgShip = loadImage("ship.png");
+  imgShot1 = loadImage("shot1.png");
+  
+  
+  int s = 0;//stars
   while (s < 100)
   {
     x[s] = random(0, width);
@@ -23,6 +38,8 @@ void setup()
   velocity = new PVector(0, 0);
   right = new PVector(1, 0);
   mass = 1;
+  
+  enemyBoss = new EnemyBoss(50, 50);
 }
 int shotRate = 120/6;
 //boolean[] keys = new boolean[2000];
@@ -40,6 +57,9 @@ float mass, timeDelta = 1.0f / 60.0f;
 
 
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+
+EnemyBoss enemyBoss;
+
 
 void draw()
 {
@@ -72,14 +92,21 @@ void draw()
   velocity.mult(0.99f);
 
   updateShip();
+  enemyBoss.update();
+  enemyBoss.render();
 
   for (int i = bullets.size () -1; i >= 0; i --)
   {
     Bullet b = bullets.get(i);
     b.update();
     b.render();
+    if (PVector.dist(b.pos, enemyBoss.pos) < enemyBoss.halfW)
+    {
+      enemyBoss.health --;
+    }
   }
 }
+
 
 
   void updateShip()
@@ -87,10 +114,8 @@ void draw()
     println(pos);
     stroke(255);
     pushMatrix();
-
     translate(pos.x, pos.y);
-    rect(0, 0, 25, 25);
-
+    image(imgShip, 5, 2);
     popMatrix();
   }
 
