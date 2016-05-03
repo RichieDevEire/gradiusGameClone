@@ -20,10 +20,13 @@ class Bullet extends GameObject
 
     if ((pos.x < 0) || (pos.x > width) || (pos.y < 0) || (pos.y > height))
     {
-      bullets.remove(this);
+     reset();
     }
   }
-
+  void reset()
+  {
+    bullets.remove(this);
+  }
   void render()
   {
     pushMatrix();
