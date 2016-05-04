@@ -11,6 +11,8 @@ PImage imgShip, imgShot1, imgBossEnemy, imgEasyEnemy;
 
 int shipX = 25;
 int shipY = 250;
+int score = 0000;
+int scoreBoss = 5000;
 
 int lastTime;
 
@@ -105,6 +107,7 @@ void draw()
   force.x = force.y = 0;
   velocity.mult(0.97f);
 
+  score();
   updateShip();
 
 for(int i = 0 ; i < easyEnemies.length ; i++)
@@ -141,7 +144,13 @@ for(int i = 0 ; i < easyEnemies.length ; i++)
   }
 }
 
-
+void score()
+{
+  fill(255);
+  textSize(24);
+  text("SCORE", 25, 40);
+  text(score, 180, 40);
+}
 
   void updateShip()
   {

@@ -27,11 +27,11 @@ class EasyEnemy extends GameObject
    pos.x = width + 100;
    pos.y = random(height);
   } 
-  if(pos.y > playerPos.y)
+  if(pos.y > playerPos.y && pos.x < playerPos.x + 400)
   {
     pos.y --;
   }
-  if(pos.y < playerPos.y)
+  if(pos.y < playerPos.y && pos.x < playerPos.x + 400)
   {
     pos.y ++;
   }
@@ -53,7 +53,7 @@ class EasyEnemy extends GameObject
     rect(-halfW, -w, 50 * ((float)health / (float)maxHealth), 10);
     stroke(255);
     rotate(theta);   
-    //imageMode(CENTER);  
+    imageMode(CENTER);  
     image(imgEasyEnemy, 0, w);
     popMatrix();
   }   
@@ -64,5 +64,6 @@ class EasyEnemy extends GameObject
     health = 10;
     enemySpeedX = random(1, 3);
     enemySpeedY = random(0.1, 1);
+    score += 100;
   }
 }

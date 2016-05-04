@@ -11,7 +11,7 @@ void keyReleased()
 }
 void getkeys()
 {
-  if (keys[UP])
+  if (keys[UP] && playerPos.y > 100)
   {
 
     // The direction is the forward vector
@@ -20,19 +20,19 @@ void getkeys()
     force.add(PVector.mult(forward, 300));
     println(force);
   }      
-  if (keys[DOWN])
+  if (keys[DOWN]&& playerPos.y < height - 100)
   {
     // The direction is the forward vector
     // The amount is 10 newtons
     // we add this to the force vector
     force.sub(PVector.mult(forward, 300));
   }      
-  if (keys[LEFT])
+  if (keys[LEFT] && playerPos.x > 100)
   {
     //      theta -= 0.1f;
     force.sub(PVector.mult(right, 350));
   }
-  if (keys[RIGHT])
+  if (keys[RIGHT] && playerPos.x < width/3)
   {
     //      theta += 0.1f;
     force.add(PVector.mult(right, 350));
