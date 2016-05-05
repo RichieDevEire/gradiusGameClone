@@ -5,6 +5,7 @@ class GameObject
   float theta = 0.0f;
   float w;
   float halfW;
+  float enemyHalfW;
   float speed = 5.0f;
   color c; 
   PVector velocity;
@@ -17,6 +18,7 @@ class GameObject
     velocity = new PVector(0, 0);
     w = 50;
     halfW = w * 0.5f;
+    enemyHalfW = w * 0.25f;
     theta = 0.0f;
   }
 

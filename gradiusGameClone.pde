@@ -7,12 +7,12 @@ import ddf.minim.effects.*;
 Minim minim;
 AudioPlayer snd;
 
-PImage imgShip, imgShot1, imgBossEnemy, imgEasyEnemy;
+PImage imgShip, imgShot1, imgBossEnemy, imgEasyEnemy, imgSplosion;
 
 int shipX = 25;
 int shipY = 250;
 int score = 0000;
-int scoreBoss = 5000;
+int scoreWin = 5000;
 
 int lastTime;
 
@@ -22,6 +22,7 @@ void setup()
   size(1920, 500);
   
   imgShip = loadImage("ship.png");
+  imgSplosion = loadImage("splosion.png");
   imgShot1 = loadImage("shot1.png");
   imgBossEnemy = loadImage("bossEnemy.png");
   imgEasyEnemy = loadImage("easyEnemy.png");
@@ -129,18 +130,13 @@ for(int i = 0 ; i < easyEnemies.length ; i++)
     }
     for(int a = 0 ; a < easyEnemies.length ; a ++)
     {
-      if (PVector.dist(b.pos, easyEnemies[a].pos) < easyEnemies[a].halfW && easyEnemies[a].health >= 0)
+      if (PVector.dist(b.pos, easyEnemies[a].pos) < easyEnemies[a].w && easyEnemies[a].health >= 0)
       {
         easyEnemies[a].health -= 10;
         b.reset();
         
       }
     }
-//    if (PVector.dist(b.pos, easyEnemy.pos) < easyEnemy.halfW && easyEnemy.health >= 0)
-//    {
-//      easyEnemy.health --;
-//      b.reset();
-//    }
   }
 }
 
@@ -151,7 +147,21 @@ void score()
   text("SCORE", 25, 40);
   text(score, 180, 40);
 }
-
+void gameOver()
+{
+  if (score == 5000)
+  {
+    gameOverScreen("You win");
+  }
+}
+  void gameOverScreen(String text)
+{
+  
+  text("You Win", width/2, height/3 - 50);
+  fill(255);
+  text(score, width/2, height/3);
+  score = 0;
+}
   void updateShip()
   {
     println(playerPos);
